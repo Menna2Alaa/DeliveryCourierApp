@@ -27,104 +27,106 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      autovalidateMode: autovalidateMode,
-      child: Stack(
-        children: [
-          Image.asset('assets/images/Rectangle 34625584.png'),
+    return SingleChildScrollView(
+      child: Form(
+        key: _formKey,
+        autovalidateMode: autovalidateMode,
+        child: Stack(
+          children: [
+            Image.asset('assets/images/Rectangle 34625584.png'),
 
-          Padding(
-            padding: const EdgeInsets.only(top: 136, left: 26, right: 26),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SvgPicture.asset('assets/images/onboarding_logo.svg'),
-                const SizedBox(height: 48),
-                const Text('Sign Up', style: AppTextStyles.semiBold20),
-                const SizedBox(height: 4),
-                Text(
-                  'You\'re welcome.',
-                  style: AppTextStyles.medium16.copyWith(
-                    color: AppColors.secondaryColor,
+            Padding(
+              padding: const EdgeInsets.only(top: 136, left: 26, right: 26),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SvgPicture.asset('assets/images/onboarding_logo.svg'),
+                  const SizedBox(height: 48),
+                  const Text('Sign Up', style: AppTextStyles.semiBold20),
+                  const SizedBox(height: 4),
+                  Text(
+                    'You\'re welcome.',
+                    style: AppTextStyles.medium16.copyWith(
+                      color: AppColors.secondaryColor,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 24),
-                const Text("Full Name"),
-                CustomeTextFormField(
-                  onSaved: (value) {
-                    userName = value!;
-                  },
-                  hintText: "Enter your user name",
-                  textInputType: TextInputType.text,
-                ),
-                const SizedBox(height: 18),
-                const Text("Email"),
-                CustomeTextFormField(
-                  onSaved: (value) {
-                    email = value!;
-                  },
-                  hintText: "Enter your email",
-                  textInputType: TextInputType.emailAddress,
-                ),
-                const SizedBox(height: 18),
-                const Text("Password"),
-                PasswordField(
-                  onSaved: (value) {
-                    password = value!;
-                  },
-                ),
-
-                const SizedBox(height: 12),
-                TermsConditionsCheckBox(
-                  onChanged: (value) {
-                    isTermsAccepted = value;
-                    setState(() {});
-                  },
-                ),
-                const SizedBox(height: 24),
-                CustomeButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _formKey.currentState!.save();
-                      if (isTermsAccepted) {
-                        context
-                            .read<SignupCubit>()
-                            .createUserWithEmailAndPassword(
-                              email,
-                              password,
-                              userName,
-                            );
-                      } else {
-                        buildErrorBar(
-                          context,
-                          'Please accept terms and conditions',
-                        );
-                      }
-                    } else {
-                      setState(() {
-                        autovalidateMode = AutovalidateMode.always;
-                      });
-                    }
-                    //Navigator.pushNamed(context, HomeView.routeName);
-                  },
-                  text: 'Sign Up',
-                ),
-                const SizedBox(height: 20),
-                Align(
-                  alignment: AlignmentGeometry.center,
-                  child: HaveOrNotHaveAnAccountWidget(
-                    text1: 'Already have an account? ',
-                    text2: 'Sign In',
-                    onTap: () {
-                      Navigator.pop(context);
+                  const SizedBox(height: 24),
+                  const Text("Full Name"),
+                  CustomeTextFormField(
+                    onSaved: (value) {
+                      userName = value!;
+                    },
+                    hintText: "Enter your user name",
+                    textInputType: TextInputType.text,
+                  ),
+                  const SizedBox(height: 18),
+                  const Text("Email"),
+                  CustomeTextFormField(
+                    onSaved: (value) {
+                      email = value!;
+                    },
+                    hintText: "Enter your email",
+                    textInputType: TextInputType.emailAddress,
+                  ),
+                  const SizedBox(height: 18),
+                  const Text("Password"),
+                  PasswordField(
+                    onSaved: (value) {
+                      password = value!;
                     },
                   ),
-                ),
-              ],
+
+                  const SizedBox(height: 12),
+                  TermsConditionsCheckBox(
+                    onChanged: (value) {
+                      isTermsAccepted = value;
+                      setState(() {});
+                    },
+                  ),
+                  const SizedBox(height: 24),
+                  CustomeButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+                        if (isTermsAccepted) {
+                          context
+                              .read<SignupCubit>()
+                              .createUserWithEmailAndPassword(
+                                email,
+                                password,
+                                userName,
+                              );
+                        } else {
+                          buildErrorBar(
+                            context,
+                            'Please accept terms and conditions',
+                          );
+                        }
+                      } else {
+                        setState(() {
+                          autovalidateMode = AutovalidateMode.always;
+                        });
+                      }
+                      //Navigator.pushNamed(context, HomeView.routeName);
+                    },
+                    text: 'Sign Up',
+                  ),
+                  const SizedBox(height: 20),
+                  Align(
+                    alignment: AlignmentGeometry.center,
+                    child: HaveOrNotHaveAnAccountWidget(
+                      text1: 'Already have an account? ',
+                      text2: 'Sign In',
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
