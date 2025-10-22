@@ -6,6 +6,7 @@ import 'package:delivery_courier_app/features/auth/presentation/views/sign_in_vi
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/have_or_not_have_an_account_widget.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/password_field.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/terms_conditions_check_box.dart';
+import 'package:delivery_courier_app/features/home/preentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -53,7 +54,12 @@ class SignUpViewBody extends StatelessWidget {
                 const SizedBox(height: 12),
                 TermsConditionsCheckBox(onChanged: (value) {}),
                 const SizedBox(height: 24),
-                CustomeButton(onPressed: () {}, text: 'Sign Up'),
+                CustomeButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, HomeView.routeName);
+                  },
+                  text: 'Sign Up',
+                ),
                 const SizedBox(height: 20),
                 Align(
                   alignment: AlignmentGeometry.center,

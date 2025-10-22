@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "35400043805",
+    "project_id": "delivery-courier-app-2983b",
+    "storage_bucket": "delivery-courier-app-2983b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35400043805:android:3f118f2f5f17507c0de5f4",
+        "android_client_info": {
+          "package_name": "com.example.delivery_courier_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEI0Z_-bSQg7NYKQfspHP8a4QSJN54vPQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

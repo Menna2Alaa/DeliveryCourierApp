@@ -7,6 +7,7 @@ import 'package:delivery_courier_app/features/auth/presentation/views/widgets/ha
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/password_field.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/sign_in_methods.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/sign_in_with_divider.dart';
+import 'package:delivery_courier_app/features/home/preentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -57,7 +58,12 @@ class SignInViewBody extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 24),
-                  CustomeButton(onPressed: () {}, text: 'Sign In'),
+                  CustomeButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, HomeView.routeName);
+                    },
+                    text: 'Sign In',
+                  ),
                   const SizedBox(height: 18),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
