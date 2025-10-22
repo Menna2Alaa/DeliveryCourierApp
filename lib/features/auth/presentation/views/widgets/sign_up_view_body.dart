@@ -1,13 +1,12 @@
+import 'package:delivery_courier_app/core/helper_function/build_error_bar.dart';
 import 'package:delivery_courier_app/core/utilies/app_colors.dart';
 import 'package:delivery_courier_app/core/utilies/app_text_styles.dart';
 import 'package:delivery_courier_app/core/widgets/custome_button.dart';
 import 'package:delivery_courier_app/core/widgets/custome_text_form_field.dart';
 import 'package:delivery_courier_app/features/auth/presentation/cubits/sign_up_cubit/sign_up_cubit.dart';
-import 'package:delivery_courier_app/features/auth/presentation/views/sign_in_view.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/have_or_not_have_an_account_widget.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/password_field.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/terms_conditions_check_box.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -24,6 +23,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   late String email, userName, password;
+  bool isTermsAccepted = false;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -75,19 +76,31 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 ),
 
                 const SizedBox(height: 12),
-                TermsConditionsCheckBox(onChanged: (value) {}),
+                TermsConditionsCheckBox(
+                  onChanged: (value) {
+                    isTermsAccepted = value;
+                    setState(() {});
+                  },
+                ),
                 const SizedBox(height: 24),
                 CustomeButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      context
-                          .read<SignupCubit>()
-                          .createUserWithEmailAndPassword(
-                            email,
-                            password,
-                            userName,
-                          );
+                      if (isTermsAccepted) {
+                        context
+                            .read<SignupCubit>()
+                            .createUserWithEmailAndPassword(
+                              email,
+                              password,
+                              userName,
+                            );
+                      } else {
+                        buildErrorBar(
+                          context,
+                          'Please accept terms and conditions',
+                        );
+                      }
                     } else {
                       setState(() {
                         autovalidateMode = AutovalidateMode.always;
@@ -104,7 +117,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     text1: 'Already have an account? ',
                     text2: 'Sign In',
                     onTap: () {
-                      Navigator.pushNamed(context, SignInView.routeName);
+                      Navigator.pop(context);
                     },
                   ),
                 ),
