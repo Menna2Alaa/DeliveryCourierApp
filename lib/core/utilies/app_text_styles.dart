@@ -69,9 +69,4 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.normal,
     fontSize: 11,
   );
-
-  static const TextStyle baloo = TextStyle(
-    fontWeight: FontWeight.normal,
-    fontSize: 30,
-  );
 }

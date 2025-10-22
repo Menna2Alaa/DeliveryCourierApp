@@ -2,6 +2,7 @@ import 'package:delivery_courier_app/core/utilies/app_colors.dart';
 import 'package:delivery_courier_app/core/utilies/app_text_styles.dart';
 import 'package:delivery_courier_app/core/widgets/custome_button.dart';
 import 'package:delivery_courier_app/core/widgets/custome_text_form_field.dart';
+import 'package:delivery_courier_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/have_or_not_have_an_account_widget.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/password_field.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/sign_in_methods.dart';
@@ -71,7 +72,9 @@ class SignInViewBody extends StatelessWidget {
                     child: HaveOrNotHaveAnAccountWidget(
                       text1: 'Don\'t have an account? ',
                       text2: 'Sign Up',
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, SignUpView.routeName);
+                      },
                     ),
                   ),
                 ],
