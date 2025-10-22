@@ -1,3 +1,4 @@
+import 'package:delivery_courier_app/core/helper_function/on_generated_routes.dart';
 import 'package:delivery_courier_app/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,9 @@ class DeliveryCourierApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: onGenerateRoute,
+      initialRoute: OnBoardingView.routeName,
+
       home: const OnBoardingView(),
     );
   }
