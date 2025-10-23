@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:delivery_courier_app/core/errors/exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthService {
   Future<User> createUserWithEmailAndPassword({
@@ -73,5 +74,21 @@ class FirebaseAuthService {
 
       throw CustomeException(message: 'Something went wrong, try again later');
     }
+  }
+
+  Future<User> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return (await FirebaseAuth.instance.signInWithCredential(credential)).user!;
   }
 }
