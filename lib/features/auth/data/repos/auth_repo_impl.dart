@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:delivery_courier_app/core/errors/exceptions.dart';
 import 'package:delivery_courier_app/core/errors/failures.dart';
@@ -26,6 +28,28 @@ class AuthRepoImpl extends AuthRepo {
       return left(ServerFailure(e.message));
     } catch (e) {
       return left(ServerFailure('Something went wrong, try again later'));
+    }
+  }
+
+  @override
+  Future<Either<Failures, UserEntity>> signinWithEmailAndPassword(
+    String email,
+    String password,
+  ) async {
+    try {
+      var user = await firebaseAuthService.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      return Right(UserModel.fromFirebase(user));
+    } on CustomeException catch (e) {
+      return Left(ServerFailure(e.message));
+    } catch (e) {
+      log(
+        'Exception in AuthRepoImplementation.signinWithEmailAndPassword: ${e.toString()}',
+      );
+      return Left(ServerFailure('Something went wrong, try again later'));
     }
   }
 }
