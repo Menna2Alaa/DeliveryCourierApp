@@ -2,22 +2,34 @@ import 'package:delivery_courier_app/core/utilies/app_colors.dart';
 import 'package:delivery_courier_app/core/utilies/app_text_styles.dart';
 import 'package:delivery_courier_app/core/widgets/custome_button.dart';
 import 'package:delivery_courier_app/core/widgets/custome_text_form_field.dart';
+import 'package:delivery_courier_app/features/auth/presentation/cubits/sign_in_cubit/sign_in_cubit.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/have_or_not_have_an_account_widget.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/password_field.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/sign_in_methods.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/sign_in_with_divider.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-class SignInViewBody extends StatelessWidget {
+class SignInViewBody extends StatefulWidget {
   const SignInViewBody({super.key});
 
+  @override
+  State<SignInViewBody> createState() => _SignInViewBodyState();
+}
+
+class _SignInViewBodyState extends State<SignInViewBody> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
+  late String email, password;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Form(
+        key: _formKey,
+        autovalidateMode: autovalidateMode,
         child: Stack(
           children: [
             Image.asset('assets/images/Rectangle 34625584.png'),
@@ -37,14 +49,21 @@ class SignInViewBody extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  const Text("User Name"),
-                  const CustomeTextFormField(
-                    hintText: "Enter your user name",
+                  const Text("Email"),
+                  CustomeTextFormField(
+                    onSaved: (value) {
+                      email = value!;
+                    },
+                    hintText: "Enter your email",
                     textInputType: TextInputType.text,
                   ),
                   const SizedBox(height: 18),
                   const Text("Password"),
-                  const PasswordField(),
+                  PasswordField(
+                    onSaved: (value) {
+                      password = value!;
+                    },
+                  ),
                   const SizedBox(height: 14),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -60,7 +79,17 @@ class SignInViewBody extends StatelessWidget {
                   const SizedBox(height: 24),
                   CustomeButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, HomeView.routeName);
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+
+                        context.read<SignInCubit>().signInWithEmailAndPassword(
+                          email,
+                          password,
+                        );
+                      } else {
+                        autovalidateMode = AutovalidateMode.always;
+                        setState(() {});
+                      }
                     },
                     text: 'Sign In',
                   ),
