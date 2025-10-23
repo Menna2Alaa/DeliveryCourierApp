@@ -13,6 +13,7 @@ void main() async {
   Bloc.observer = CustomeBlocObserver();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   await Pref.init();
   setupGetIt();
   runApp(const DeliveryCourierApp());
