@@ -3,14 +3,9 @@ import 'package:delivery_courier_app/features/auth/presentation/views/widgets/so
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignInMethods extends StatefulWidget {
+class SignInMethods extends StatelessWidget {
   const SignInMethods({super.key});
 
-  @override
-  State<SignInMethods> createState() => _SignInMethodsState();
-}
-
-class _SignInMethodsState extends State<SignInMethods> {
   @override
   Widget build(BuildContext context) {
     return Row(
