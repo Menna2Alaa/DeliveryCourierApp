@@ -20,7 +20,9 @@ class SignInMethods extends StatelessWidget {
         const SizedBox(width: 12),
         SocialLoginButton(
           icon: Image.asset('assets/images/facebook_icon.png'),
-          onPressed: () {},
+          onPressed: () {
+            context.read<SignInCubit>().signInWithFacebook();
+          },
         ),
         const SizedBox(width: 12),
         SocialLoginButton(
