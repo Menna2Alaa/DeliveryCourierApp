@@ -80,6 +80,8 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                   const SizedBox(height: 24),
                   CustomeButton(
                     onPressed: () {
+                      FocusScope.of(context).unfocus();
+
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
 
