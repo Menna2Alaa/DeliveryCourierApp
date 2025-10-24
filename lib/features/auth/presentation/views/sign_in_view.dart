@@ -13,7 +13,7 @@ class SignInView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) => SignInCubit(getIt<AuthRepo>()),
-      child: Scaffold(body: const SignInviewBodyBlocconsumer()),
+      child: Scaffold(body: const SignInviewBodyBlocConsumer()),
     );
   }
 }

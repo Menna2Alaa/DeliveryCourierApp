@@ -6,8 +6,8 @@ import 'package:delivery_courier_app/features/home/preentation/views/home_view.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignInviewBodyBlocconsumer extends StatelessWidget {
-  const SignInviewBodyBlocconsumer({super.key});
+class SignInviewBodyBlocConsumer extends StatelessWidget {
+  const SignInviewBodyBlocConsumer({super.key});
 
   @override
   Widget build(BuildContext context) {

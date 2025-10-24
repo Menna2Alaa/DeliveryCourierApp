@@ -75,3 +75,8 @@ flutter:
   #       - asset: assets/fonts/BalooBhaijaan2-VariableFont_wght.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+flutter_assets:
+  assets_path: assets/images/
+  output_path: lib/core/utilies
+  filename: assets.dart

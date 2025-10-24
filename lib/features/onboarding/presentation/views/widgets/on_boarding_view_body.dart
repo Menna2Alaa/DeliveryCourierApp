@@ -1,4 +1,8 @@
+import 'package:delivery_courier_app/constants.dart';
+import 'package:delivery_courier_app/core/services/shared_prefrences_singleton.dart';
 import 'package:delivery_courier_app/core/utilies/app_text_styles.dart';
+import 'package:delivery_courier_app/core/utilies/assets.dart';
+import 'package:delivery_courier_app/core/widgets/custome_button.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/sign_in_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,18 +16,12 @@ class OnBoardingViewBody extends StatefulWidget {
 
 class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
   @override
-  void initState() {
-    executeNavigation();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Positioned.fill(
           child: Image.asset(
-            'assets/images/onboarding_image.png',
+            Assets.assetsImagesOnboardingImage,
             fit: BoxFit.cover,
           ),
         ),
@@ -39,10 +37,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             children: [
               Align(
                 alignment: Alignment.center,
-                child: SvgPicture.asset(
-                  'assets/images/onboarding_logo.svg',
-                  height: 40,
-                ),
+                child: SvgPicture.asset(Assets.assetsImagesAppLogo, height: 40),
               ),
               const Spacer(),
 
@@ -60,18 +55,19 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
               ),
 
               const Spacer(),
+              CustomeButton(
+                onPressed: () {
+                  Pref.setBool(kIsOnBoardingViewSeen, true);
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(SignInView.routeName);
+                },
+                text: 'Get Started',
+              ),
             ],
           ),
         ),
       ],
     );
-  }
-
-  void executeNavigation() {
-    Future.delayed(const Duration(seconds: 3), () {
-      if (mounted) {
-        Navigator.pushReplacementNamed(context, SignInView.routeName);
-      }
-    });
   }
 }

@@ -1,6 +1,7 @@
 import 'package:delivery_courier_app/core/helper_function/build_error_bar.dart';
 import 'package:delivery_courier_app/core/utilies/app_colors.dart';
 import 'package:delivery_courier_app/core/utilies/app_text_styles.dart';
+import 'package:delivery_courier_app/core/utilies/assets.dart';
 import 'package:delivery_courier_app/core/widgets/custome_button.dart';
 import 'package:delivery_courier_app/core/widgets/custome_text_form_field.dart';
 import 'package:delivery_courier_app/features/auth/presentation/cubits/sign_up_cubit/sign_up_cubit.dart';
@@ -33,14 +34,14 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
         autovalidateMode: autovalidateMode,
         child: Stack(
           children: [
-            Image.asset('assets/images/Rectangle 34625584.png'),
+            Image.asset(Assets.assetsImagesTopScreenBackground),
 
             Padding(
               padding: const EdgeInsets.only(top: 136, left: 26, right: 26),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SvgPicture.asset('assets/images/onboarding_logo.svg'),
+                  SvgPicture.asset(Assets.assetsImagesAppLogo),
                   const SizedBox(height: 48),
                   const Text('Sign Up', style: AppTextStyles.semiBold20),
                   const SizedBox(height: 4),

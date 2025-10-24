@@ -1,4 +1,5 @@
 import 'package:delivery_courier_app/core/utilies/app_colors.dart';
+import 'package:delivery_courier_app/core/utilies/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -37,7 +38,7 @@ class _CustomeCheckBoxState extends State<CustomeCheckBox> {
           ),
         ),
         child: isChecked
-            ? SvgPicture.asset('assets/images/Check.svg')
+            ? SvgPicture.asset(Assets.assetsImagesCheck)
             : SizedBox(),
       ),
     );
