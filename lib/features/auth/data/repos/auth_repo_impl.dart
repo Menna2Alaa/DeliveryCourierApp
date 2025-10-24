@@ -75,7 +75,7 @@ class AuthRepoImpl extends AuthRepo {
       return Right(UserModel.fromFirebase(user));
     } catch (e) {
       log(
-        'Exception in AuthRepoImplementation.signinWithGoogle: ${e.toString()}',
+        'Exception in AuthRepoImplementation.signinWithFacebook: ${e.toString()}',
       );
       return Left(ServerFailure('Something went wrong, try again later'));
     }

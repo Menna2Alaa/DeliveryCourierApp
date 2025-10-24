@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">Delivery Courier App</string>
+    
+<string name="facebook_app_id">4045950978989796</string>
+<string name="fb_login_protocol_scheme">fb1234</string>
+<string name="facebook_client_token">1a78d0a48da37a0267d85d71d941dea0</string>
+
+
+</resources>
