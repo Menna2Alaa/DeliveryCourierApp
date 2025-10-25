@@ -13,17 +13,20 @@ class HighRelatedCouriersListView extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       itemCount: 5,
       itemBuilder: (BuildContext context, int index) {
-        return HomeHeadersDetails(
-          text1: 'John Smith',
-          text2: '01001563144',
-          leftIcon: Image.asset(
-            Assets.assetsImagesCourier,
-            width: 20,
-            height: 20,
-            fit: BoxFit.fill,
-          ),
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: HomeHeadersDetails(
+            text1: 'John Smith',
+            text2: '01001563144',
+            leftIcon: Image.asset(
+              Assets.assetsImagesCourier,
+              width: 20,
+              height: 20,
+              fit: BoxFit.fill,
+            ),
 
-          rightIcon: SvgPicture.asset(Assets.assetsImagesRightArrow),
+            rightIcon: SvgPicture.asset(Assets.assetsImagesRightArrow),
+          ),
         );
       },
     );

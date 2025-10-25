@@ -29,7 +29,7 @@ class HomeHeadersDetails extends StatelessWidget {
                 spreadRadius: 0,
               ),
             ],
-            border: BoxBorder.all(color: Colors.white, width: 1),
+            border: BoxBorder.all(color: Color(0xffEDEDED), width: 1),
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
         ),
