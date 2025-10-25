@@ -50,10 +50,10 @@ abstract class AppTextStyles {
     fontSize: 11,
   );
 
-  static const TextStyle medium16 = TextStyle(
-    fontWeight: FontWeight.w300,
-    fontSize: 16,
-  );
+  // static const TextStyle medium16 = TextStyle(
+  //   fontWeight: FontWeight.w300,
+  //   fontSize: 16,
+  // );
 
   static const TextStyle regular26 = TextStyle(
     fontWeight: FontWeight.normal,
@@ -68,5 +68,24 @@ abstract class AppTextStyles {
   static const TextStyle regular11 = TextStyle(
     fontWeight: FontWeight.normal,
     fontSize: 11,
+  );
+
+  /////////////////////////////////////////////
+  static const TextStyle medium16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    fontFamily: "Inter",
+    fontStyle: FontStyle.normal,
+  );
+  static const TextStyle medium12 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+  );
+  static const TextStyle regular12 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    decoration: TextDecoration.none,
   );
 }
