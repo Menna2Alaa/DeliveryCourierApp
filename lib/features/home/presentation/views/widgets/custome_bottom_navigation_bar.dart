@@ -1,5 +1,5 @@
 import 'package:delivery_courier_app/features/home/domain/entities/bottom_navigation_bar_entity.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/widgets/navigation_bar_item.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 
 class CustomeBottomNavigationBar extends StatefulWidget {

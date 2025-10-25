@@ -2,7 +2,7 @@ import 'package:delivery_courier_app/core/helper_function/build_error_bar.dart';
 import 'package:delivery_courier_app/core/widgets/custome_progress_hud.dart';
 import 'package:delivery_courier_app/features/auth/presentation/cubits/sign_in_cubit/sign_in_cubit.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/sign_in_view_body.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/home_view.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

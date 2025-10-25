@@ -1,5 +1,5 @@
 import 'package:delivery_courier_app/core/utilies/assets.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/widgets/home_headers_details.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_headers_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

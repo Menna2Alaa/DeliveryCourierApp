@@ -1,6 +1,6 @@
 import 'package:delivery_courier_app/features/home/domain/entities/bottom_navigation_bar_entity.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/widgets/active_navigation_bar_item.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/widgets/in_active_bottom_navigation_bar_item.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/active_navigation_bar_item.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/in_active_bottom_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 
 class NavigationBarItem extends StatelessWidget {

@@ -1,12 +1,12 @@
 import 'package:delivery_courier_app/core/utilies/app_text_styles.dart';
 import 'package:delivery_courier_app/core/utilies/assets.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/widgets/ads_banner_widget.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/widgets/high_related_couriers_list_view.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/widgets/home_headers_details.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/widgets/home_header_widget.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/widgets/custome_search_text_field.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/widgets/home_app_bar_widget.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/widgets/home_background_widget.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/ads_banner_widget.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/high_related_couriers_list_view.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_headers_details.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_header_widget.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/custome_search_text_field.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_app_bar_widget.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_background_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

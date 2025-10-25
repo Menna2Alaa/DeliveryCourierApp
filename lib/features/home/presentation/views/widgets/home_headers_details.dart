@@ -1,5 +1,5 @@
-import 'package:delivery_courier_app/features/home/preentation/views/widgets/home_list_tile_leading_item.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/widgets/home_list_tile_title_item.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_list_tile_leading_item.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_list_tile_title_item.dart';
 import 'package:flutter/material.dart';
 
 class HomeHeadersDetails extends StatelessWidget {

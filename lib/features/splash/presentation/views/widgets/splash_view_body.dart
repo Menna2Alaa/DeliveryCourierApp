@@ -3,7 +3,7 @@ import 'package:delivery_courier_app/features/auth/data/services/firebase_auth_s
 import 'package:delivery_courier_app/core/services/shared_prefrences_singleton.dart';
 import 'package:delivery_courier_app/core/utilies/assets.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/sign_in_view.dart';
-import 'package:delivery_courier_app/features/home/preentation/views/home_view.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/home_view.dart';
 import 'package:delivery_courier_app/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
