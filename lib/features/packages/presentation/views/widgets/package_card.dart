@@ -1,17 +1,18 @@
-import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_list_tile_leading_item.dart';
-import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_list_tile_title_item.dart';
+import 'package:delivery_courier_app/core/utilies/assets.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/list_tile_leading.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/list_tile_title.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class HomeHeadersDetails extends StatelessWidget {
-  const HomeHeadersDetails({
+class PackageCard extends StatelessWidget {
+  const PackageCard({
     super.key,
     required this.text1,
     required this.text2,
     required this.leftIcon,
-    required this.rightIcon,
   });
   final String text1, text2;
-  final Widget leftIcon, rightIcon;
+  final Widget leftIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +35,9 @@ class HomeHeadersDetails extends StatelessWidget {
           ),
         ),
         ListTile(
-          leading: HomeListTileLeadingItem(leftIcon: leftIcon),
-          title: HomeListTileTitleItem(text1: text1, text2: text2),
-          trailing: rightIcon,
+          leading: ListTileLeading(leftIcon: leftIcon),
+          title: ListTileTitle(text1: text1, text2: text2),
+          trailing: SvgPicture.asset(Assets.assetsImagesRightArrow),
         ),
       ],
     );

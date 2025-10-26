@@ -5,6 +5,7 @@ import 'package:delivery_courier_app/core/utilies/assets.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/sign_in_view.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/home_view.dart';
 import 'package:delivery_courier_app/features/onboarding/presentation/views/on_boarding_view.dart';
+import 'package:delivery_courier_app/features/packages/presentation/views/package_view.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -40,7 +41,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         var isLoggedIn = FirebaseAuthService().isLoggedIn();
         if (isLoggedIn) {
           if (mounted) {
-            Navigator.pushReplacementNamed(context, HomeView.routeName);
+            Navigator.pushReplacementNamed(context, PackageView.routeName);
           }
         } else {
           if (mounted) {

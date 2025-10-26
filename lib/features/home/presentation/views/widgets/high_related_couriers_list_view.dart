@@ -1,7 +1,6 @@
 import 'package:delivery_courier_app/core/utilies/assets.dart';
-import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_headers_details.dart';
+import 'package:delivery_courier_app/features/packages/presentation/views/widgets/package_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class HighRelatedCouriersListView extends StatelessWidget {
   const HighRelatedCouriersListView({super.key});
@@ -15,7 +14,7 @@ class HighRelatedCouriersListView extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 8),
-          child: HomeHeadersDetails(
+          child: PackageCard(
             text1: 'John Smith',
             text2: '01001563144',
             leftIcon: Image.asset(
@@ -24,8 +23,6 @@ class HighRelatedCouriersListView extends StatelessWidget {
               height: 20,
               fit: BoxFit.fill,
             ),
-
-            rightIcon: SvgPicture.asset(Assets.assetsImagesRightArrow),
           ),
         );
       },

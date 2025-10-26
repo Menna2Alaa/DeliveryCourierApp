@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomeSearchTextField extends StatelessWidget {
-  const CustomeSearchTextField({super.key});
-
+  const CustomeSearchTextField({super.key, required this.hintText});
+  final String hintText;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,7 +29,7 @@ class CustomeSearchTextField extends StatelessWidget {
             ),
           ),
 
-          hintText: 'Enter your trackig number',
+          hintText: hintText,
           hintStyle: AppTextStyles.regular13.copyWith(color: Color(0xff949D9E)),
           filled: true,
           fillColor: Colors.white,

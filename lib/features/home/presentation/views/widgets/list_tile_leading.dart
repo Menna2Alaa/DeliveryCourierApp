@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomeListTileLeadingItem extends StatelessWidget {
-  const HomeListTileLeadingItem({super.key, required this.leftIcon});
+class ListTileLeading extends StatelessWidget {
+  const ListTileLeading({super.key, required this.leftIcon});
 
   final Widget leftIcon;
 

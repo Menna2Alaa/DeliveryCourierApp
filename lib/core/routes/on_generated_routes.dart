@@ -2,6 +2,7 @@ import 'package:delivery_courier_app/features/auth/presentation/views/sign_in_vi
 import 'package:delivery_courier_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/home_view.dart';
 import 'package:delivery_courier_app/features/onboarding/presentation/views/on_boarding_view.dart';
+import 'package:delivery_courier_app/features/packages/presentation/views/package_view.dart';
 import 'package:delivery_courier_app/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case SplashView.routeName:
       return MaterialPageRoute(builder: (_) => const SplashView());
+
+    case PackageView.routeName:
+      return MaterialPageRoute(builder: (_) => const PackageView());
 
     default:
       return MaterialPageRoute(builder: (_) => const Scaffold());
