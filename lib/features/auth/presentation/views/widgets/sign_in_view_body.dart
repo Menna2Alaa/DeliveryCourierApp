@@ -95,6 +95,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                       }
                     },
                     text: 'Sign In',
+                    width: double.infinity,
                   ),
                   const SizedBox(height: 18),
                   Padding(

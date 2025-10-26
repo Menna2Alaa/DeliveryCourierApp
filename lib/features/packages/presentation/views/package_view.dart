@@ -1,3 +1,4 @@
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/custome_bottom_navigation_bar.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/widgets/package_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,10 @@ class PackageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: const SafeArea(child: PackageViewBody()));
+    return Scaffold(
+      bottomNavigationBar: CustomeBottomNavigationBar(),
+
+      body: const SafeArea(child: PackageViewBody()),
+    );
   }
 }

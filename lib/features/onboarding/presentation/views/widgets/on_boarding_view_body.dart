@@ -63,6 +63,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                   ).pushReplacementNamed(SignInView.routeName);
                 },
                 text: 'Get Started',
+                width: double.infinity,
               ),
             ],
           ),

@@ -3,14 +3,20 @@ import 'package:delivery_courier_app/core/utilies/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomeButton extends StatelessWidget {
-  const CustomeButton({super.key, required this.onPressed, required this.text});
+  const CustomeButton({
+    super.key,
+    required this.onPressed,
+    required this.text,
+    required this.width,
+  });
   final void Function()? onPressed;
   final String text;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
+      width: width,
       height: 54,
       child: TextButton(
         style: TextButton.styleFrom(

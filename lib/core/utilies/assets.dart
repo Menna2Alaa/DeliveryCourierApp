@@ -46,9 +46,9 @@ class Assets {
   /// assets/images/home.svg
   static const String assetsImagesHome = "assets/images/home.svg";
 
-  /// Assets for assetsImagesHomePng
-  /// assets/images/homePng.png
-  static const String assetsImagesHomePng = "assets/images/homePng.png";
+  /// Assets for assetsImagesLeftArrow
+  /// assets/images/left_arrow.svg
+  static const String assetsImagesLeftArrow = "assets/images/left_arrow.svg";
 
   /// Assets for assetsImagesOnboardingImage
   /// assets/images/onboarding_image.png
@@ -77,9 +77,5 @@ class Assets {
   /// Assets for assetsImagesUser
   /// assets/images/user.svg
   static const String assetsImagesUser = "assets/images/user.svg";
-
-  /// Assets for assetsImagesUserPng
-  /// assets/images/userPng.png
-  static const String assetsImagesUserPng = "assets/images/userPng.png";
 }
 

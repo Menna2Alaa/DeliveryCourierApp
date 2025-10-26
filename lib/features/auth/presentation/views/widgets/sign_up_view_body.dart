@@ -113,6 +113,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                       //Navigator.pushNamed(context, HomeView.routeName);
                     },
                     text: 'Sign Up',
+                    width: double.infinity,
                   ),
                   const SizedBox(height: 20),
                   Align(

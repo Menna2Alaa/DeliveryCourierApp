@@ -10,9 +10,11 @@ class PackageCard extends StatelessWidget {
     required this.text1,
     required this.text2,
     required this.leftIcon,
+    this.onTap,
   });
   final String text1, text2;
   final Widget leftIcon;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,10 @@ class PackageCard extends StatelessWidget {
         ListTile(
           leading: ListTileLeading(leftIcon: leftIcon),
           title: ListTileTitle(text1: text1, text2: text2),
-          trailing: SvgPicture.asset(Assets.assetsImagesRightArrow),
+          trailing: GestureDetector(
+            onTap: onTap,
+            child: SvgPicture.asset(Assets.assetsImagesRightArrow),
+          ),
         ),
       ],
     );
