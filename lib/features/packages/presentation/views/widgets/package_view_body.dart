@@ -7,12 +7,20 @@ class PackageViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        PackageHeader(),
-        SizedBox(height: 12),
-        Expanded(child: PackagesListView()),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      child: Column(
+        children: [
+          PackageHeader(
+            text: 'Packages',
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          const SizedBox(height: 12),
+          const Expanded(child: PackagesListView()),
+        ],
+      ),
     );
   }
 }

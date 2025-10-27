@@ -1,8 +1,13 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:delivery_courier_app/constants.dart';
 import 'package:delivery_courier_app/core/errors/exceptions.dart';
 import 'package:delivery_courier_app/core/errors/failures.dart';
+import 'package:delivery_courier_app/core/services/shared_prefrences_singleton.dart';
+import 'package:delivery_courier_app/features/auth/data/services/backend_endpoint.dart';
+import 'package:delivery_courier_app/features/auth/data/services/database_service.dart';
 import 'package:delivery_courier_app/features/auth/data/services/firebase_auth_service.dart';
 import 'package:delivery_courier_app/features/auth/data/models/user_model.dart';
 import 'package:delivery_courier_app/features/auth/domain/entities/user_entity.dart';
@@ -10,8 +15,12 @@ import 'package:delivery_courier_app/features/auth/domain/repos/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;
+  final DataBaseService dataBaseService;
 
-  AuthRepoImpl({required this.firebaseAuthService});
+  AuthRepoImpl({
+    required this.dataBaseService,
+    required this.firebaseAuthService,
+  });
   @override
   Future<Either<Failures, UserEntity>> createUserWithEmailAndPassword(
     String email,
@@ -41,8 +50,10 @@ class AuthRepoImpl extends AuthRepo {
         email: email,
         password: password,
       );
-
-      return Right(UserModel.fromFirebase(user));
+      var userEntity = await getUserData(uId: user.uid);
+      await saveUserData(user: userEntity);
+      //save user data if we use API to know if he logged in before or not after that in splash view before navigation check about it(fetch user data and see if it null or not)
+      return Right(userEntity);
     } on CustomeException catch (e) {
       return Left(ServerFailure(e.message));
     } catch (e) {
@@ -79,5 +90,29 @@ class AuthRepoImpl extends AuthRepo {
       );
       return Left(ServerFailure('Something went wrong, try again later'));
     }
+  }
+
+  @override
+  Future addUserData({required UserEntity user}) async {
+    await dataBaseService.addData(
+      path: BackendEndpoint.addUserData,
+      data: UserModel.fromEntity(user).toMap(),
+      documentId: user.uId,
+    );
+  }
+
+  @override
+  Future<UserEntity> getUserData({required String uId}) async {
+    var userData = await dataBaseService.getData(
+      path: BackendEndpoint.getUserData,
+      documentId: uId,
+    );
+    return UserModel.fromJson(userData);
+  }
+
+  @override
+  Future saveUserData({required UserEntity user}) async {
+    var jasonData = jsonEncode(UserModel.fromEntity(user).toMap());
+    await Pref.setString(kUserData, jasonData);
   }
 }

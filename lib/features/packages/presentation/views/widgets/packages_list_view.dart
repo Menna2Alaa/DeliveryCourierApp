@@ -15,7 +15,7 @@ class PackagesListView extends StatelessWidget {
       itemCount: 10,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.only(left: 18, right: 18, bottom: 8),
+          padding: const EdgeInsets.only(bottom: 8),
           child: PackageCard(
             onTap: () {
               Navigator.pushNamed(context, PackageDetailsView.routeName);

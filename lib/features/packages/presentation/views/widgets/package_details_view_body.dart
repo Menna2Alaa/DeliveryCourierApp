@@ -1,4 +1,4 @@
-import 'package:delivery_courier_app/features/packages/presentation/views/widgets/package_detail_info_field.dart';
+import 'package:delivery_courier_app/features/packages/presentation/views/widgets/package_detail_info_Field.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/widgets/package_header.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/widgets/rating_section.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,12 @@ class PackageDetailsBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const PackageHeader(),
+            PackageHeader(
+              text: 'Package details',
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
             const SizedBox(height: 25),
 
             const PackageDetailInfoField(label: 'Content', value: 'Documents'),

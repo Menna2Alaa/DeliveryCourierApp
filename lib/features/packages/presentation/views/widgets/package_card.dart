@@ -36,12 +36,12 @@ class PackageCard extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
         ),
-        ListTile(
-          leading: ListTileLeading(leftIcon: leftIcon),
-          title: ListTileTitle(text1: text1, text2: text2),
-          trailing: GestureDetector(
-            onTap: onTap,
-            child: SvgPicture.asset(Assets.assetsImagesRightArrow),
+        GestureDetector(
+          onTap: onTap,
+          child: ListTile(
+            leading: ListTileLeading(leftIcon: leftIcon),
+            title: ListTileTitle(text1: text1, text2: text2),
+            trailing: SvgPicture.asset(Assets.assetsImagesRightArrow),
           ),
         ),
       ],

@@ -4,15 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PackageHeader extends StatelessWidget {
-  const PackageHeader({super.key});
-
+  const PackageHeader({super.key, required this.text, this.onTap});
+  final String text;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SvgPicture.asset(Assets.assetsImagesLeftArrow),
+        GestureDetector(
+          onTap: onTap,
+          child: SvgPicture.asset(Assets.assetsImagesLeftArrow),
+        ),
         const SizedBox(width: 16),
-        Text('Package details', style: AppTextStyles.medium16),
+        Text(text, style: AppTextStyles.medium16),
       ],
     );
   }
