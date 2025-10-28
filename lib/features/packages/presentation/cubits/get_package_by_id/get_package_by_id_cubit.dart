@@ -7,14 +7,14 @@ part 'get_package_by_id_state.dart';
 class GetPackageByIdCubit extends Cubit<GetPackageByIDState> {
   final PackageRepo packageRepo;
 
-  GetPackageByIdCubit(this.packageRepo) : super(PackageInitial());
+  GetPackageByIdCubit(this.packageRepo) : super(GetPackageByIdInitial());
 
   Future<void> getPackageByTrackingId(String trackingId) async {
-    emit(PackageLoading());
+    emit(GetPackageByIdLoading());
     final result = await packageRepo.getPackageByTrackingId(trackingId);
     result.fold(
-      (failure) => emit(GetPackageFailure(failure.message)),
-      (package) => emit(GetPackageSuccess(package)),
+      (failure) => emit(GetPackageByIdFailure(failure.message)),
+      (package) => emit(GetPackageByIdSuccess(package)),
     );
   }
 }

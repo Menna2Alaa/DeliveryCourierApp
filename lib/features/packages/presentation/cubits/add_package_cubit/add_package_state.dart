@@ -2,9 +2,9 @@ part of 'add_package_cubit.dart';
 
 sealed class PackageState {}
 
-class PackageInitial extends PackageState {}
+class AddPackageInitial extends PackageState {}
 
-class PackageLoading extends PackageState {}
+class AddPackageLoading extends PackageState {}
 
 class PackageAddedSuccess extends PackageState {
   final PackageEntity packageEntity;

@@ -9,7 +9,7 @@ part 'add_package_state.dart';
 class PackageCubit extends Cubit<PackageState> {
   final PackageRepo packageRepo;
 
-  PackageCubit(this.packageRepo) : super(PackageInitial());
+  PackageCubit(this.packageRepo) : super(AddPackageInitial());
 
   Future<void> addPackage() async {
     final firestore = FirebaseFirestore.instance;

@@ -14,7 +14,7 @@ class PackageListViewBlocConsumer extends StatelessWidget {
     return BlocConsumer<PackageCubit, PackageState>(
       builder: (BuildContext context, state) {
         return CustomeProgressHud(
-          isLoading: state is PackageLoading ? true : false,
+          isLoading: state is AddPackageLoading ? true : false,
           child: SafeArea(child: const PackageViewBody()),
         );
       },

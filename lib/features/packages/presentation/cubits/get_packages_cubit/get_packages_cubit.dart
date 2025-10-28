@@ -7,10 +7,10 @@ part 'get_packages_state.dart';
 class GetPackagesCubit extends Cubit<GetPackageState> {
   final PackageRepo packageRepo;
 
-  GetPackagesCubit(this.packageRepo) : super(PackageInitial());
+  GetPackagesCubit(this.packageRepo) : super(GetPackagesInitial());
 
   Future<void> getAllPackages() async {
-    emit(PackageLoading());
+    emit(GetPackagesLoading());
     final result = await packageRepo.getAllPackages();
     result.fold(
       (failure) => emit(GetPackagesFailure(failure.message)),
