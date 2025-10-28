@@ -12,6 +12,7 @@ import 'package:delivery_courier_app/features/auth/data/services/firebase_auth_s
 import 'package:delivery_courier_app/features/auth/data/models/user_model.dart';
 import 'package:delivery_courier_app/features/auth/domain/entities/user_entity.dart';
 import 'package:delivery_courier_app/features/auth/domain/repos/auth_repo.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;
@@ -27,16 +28,24 @@ class AuthRepoImpl extends AuthRepo {
     String password,
     String name,
   ) async {
+    User? user;
     try {
-      var user = await firebaseAuthService.createUserWithEmailAndPassword(
+      user = await firebaseAuthService.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return right(UserModel.fromFirebase(user));
+      var userEntity = UserEntity(name: name, email: email, uId: user.uid);
+      await addUserData(user: userEntity);
+      return Right(userEntity);
     } on CustomeException catch (e) {
-      return left(ServerFailure(e.message));
+      await deleteUser(user);
+      return Left(ServerFailure(e.message));
     } catch (e) {
-      return left(ServerFailure('Something went wrong, try again later'));
+      deleteUser(user);
+      log(
+        'Exception in AuthRepoImplementation.createUserWithEmailAndPassword: ${e.toString()}',
+      );
+      return Left(ServerFailure('Something went wrong, try again later'));
     }
   }
 
@@ -114,5 +123,11 @@ class AuthRepoImpl extends AuthRepo {
   Future saveUserData({required UserEntity user}) async {
     var jasonData = jsonEncode(UserModel.fromEntity(user).toMap());
     await Pref.setString(kUserData, jasonData);
+  }
+
+  Future<void> deleteUser(User? user) async {
+    if (user != null) {
+      await firebaseAuthService.deleteUSer();
+    }
   }
 }
