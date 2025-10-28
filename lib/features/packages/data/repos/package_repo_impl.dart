@@ -22,6 +22,11 @@ class PackageRepoImpl implements PackageRepo {
         'totalPrice': package.totalPrice,
         'deliveryStatus': package.deliveryStatus,
         'paymentDetails': package.paymentDetails,
+        'senderName': package.senderName,
+        'receiverName': package.receiverName,
+        'phoneNumber': package.phoneNumber,
+        'address': package.address,
+        'location': package.location,
       });
       return const Right(null);
     } catch (e) {
@@ -33,11 +38,9 @@ class PackageRepoImpl implements PackageRepo {
   Future<Either<Failures, List<PackageEntity>>> getAllPackages() async {
     try {
       final snapshot = await firestore.collection('packages').get();
-
       final packages = snapshot.docs
           .map((doc) => PackageModel.fromMap(doc.data()))
           .toList();
-
       return Right(packages);
     } catch (e) {
       return Left(ServerFailure(e.toString()));

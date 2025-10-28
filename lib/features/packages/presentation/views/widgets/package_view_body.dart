@@ -1,4 +1,6 @@
-import 'package:delivery_courier_app/features/packages/presentation/views/widgets/package_header.dart';
+import 'package:delivery_courier_app/core/utilies/app_text_styles.dart';
+import 'package:delivery_courier_app/core/widgets/background_widget.dart';
+import 'package:delivery_courier_app/core/widgets/custome_search_text_field.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/widgets/packages_list_view.dart';
 import 'package:flutter/material.dart';
 
@@ -7,20 +9,37 @@ class PackageViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      child: Column(
-        children: [
-          PackageHeader(
-            text: 'Packages',
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          const SizedBox(height: 12),
-          const Expanded(child: PackagesListView()),
-        ],
-      ),
+    return Column(
+      children: [
+        Stack(
+          children: [
+            BackGroundWidget(heigth: 240),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 18),
+
+              child: Column(
+                children: [
+                  Align(
+                    alignment: AlignmentGeometry.topLeft,
+                    child: Text(
+                      "Check your package",
+                      style: AppTextStyles.semiBold20.copyWith(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 45),
+                  const CustomeSearchTextField(
+                    hintText: 'Serch about your trackig number',
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        const Expanded(child: PackagesListView()),
+      ],
     );
   }
 }

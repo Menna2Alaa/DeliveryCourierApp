@@ -7,6 +7,12 @@ class PackageEntity {
   final String deliveryStatus;
   final String paymentDetails;
 
+  final String? senderName;
+  final String? receiverName;
+  final String? phoneNumber;
+  final String? address;
+  final String? location;
+
   PackageEntity({
     required this.pkgId,
     required this.content,
@@ -15,5 +21,10 @@ class PackageEntity {
     required this.totalPrice,
     required this.deliveryStatus,
     required this.paymentDetails,
+    this.senderName,
+    this.receiverName,
+    this.phoneNumber,
+    this.address,
+    this.location,
   });
 }
