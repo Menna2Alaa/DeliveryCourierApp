@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:delivery_courier_app/features/home/presentation/views/widgets/custome_bottom_navigation_bar.dart';
 import 'package:delivery_courier_app/features/packages/data/repos/package_repo_impl.dart';
 import 'package:delivery_courier_app/features/packages/presentation/cubits/get_packages_cubit/get_packages_cubit.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/widgets/package_view_body.dart';
@@ -17,7 +16,7 @@ class PackageView extends StatelessWidget {
         PackageRepoImpl(firestore: FirebaseFirestore.instance),
       )..getAllPackages(),
       child: Scaffold(
-        bottomNavigationBar: CustomeBottomNavigationBar(),
+        // bottomNavigationBar: CustomeBottomNavigationBar(),
         body: const SafeArea(child: PackageViewBody()),
       ),
     );
