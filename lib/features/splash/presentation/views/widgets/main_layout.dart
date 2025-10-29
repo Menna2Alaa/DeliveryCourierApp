@@ -19,7 +19,12 @@ class _MainLayoutState extends State<MainLayout> {
   int currentIndex = 0;
 
   final List<Widget> screens = [
-    HomeViewBody(),
+    BlocProvider(
+      create: (BuildContext context) => GetPackagesCubit(
+        PackageRepoImpl(firestore: FirebaseFirestore.instance),
+      )..getAllPackages(),
+      child: const SafeArea(child: HomeViewBody()),
+    ),
     BlocProvider(
       create: (BuildContext context) => GetPackagesCubit(
         PackageRepoImpl(firestore: FirebaseFirestore.instance),

@@ -7,8 +7,10 @@ class HomeHeadersWidget extends StatelessWidget {
     super.key,
     required this.text1,
     required this.text2,
+    this.onTap,
   });
   final String text1, text2;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class HomeHeadersWidget extends StatelessWidget {
         Text(text1, textAlign: TextAlign.left, style: AppTextStyles.medium16),
         Spacer(),
         GestureDetector(
-          onTap: () {},
+          onTap: onTap,
           child: Text(
             text2,
             textAlign: TextAlign.center,

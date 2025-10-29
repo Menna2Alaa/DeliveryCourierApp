@@ -2,6 +2,7 @@ import 'package:delivery_courier_app/features/auth/presentation/views/sign_in_vi
 import 'package:delivery_courier_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/home_view.dart';
 import 'package:delivery_courier_app/features/onboarding/presentation/views/on_boarding_view.dart';
+import 'package:delivery_courier_app/features/packages/domain/entity/package_entity.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/package_details_view.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/package_view.dart';
 import 'package:delivery_courier_app/features/splash/presentation/views/splash_view.dart';
@@ -29,7 +30,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => const PackageView());
 
     case PackageDetailsView.routeName:
-      return MaterialPageRoute(builder: (_) => const PackageDetailsView());
+      final package = settings.arguments as PackageEntity?;
+      return MaterialPageRoute(
+        builder: (_) => PackageDetailsView(package: package),
+      );
 
     case MainLayout.routeName:
       return MaterialPageRoute(builder: (_) => const MainLayout());
