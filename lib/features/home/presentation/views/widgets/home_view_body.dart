@@ -2,19 +2,26 @@ import 'package:delivery_courier_app/core/utilies/app_text_styles.dart';
 import 'package:delivery_courier_app/core/utilies/assets.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/widgets/ads_banner_widget.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/widgets/high_related_couriers_list_view.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/search_package_by_id_bloc_listener.dart';
 import 'package:delivery_courier_app/features/packages/presentation/cubits/get_packages_cubit/get_packages_cubit.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/package_details_view.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/widgets/package_card.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_header_widget.dart';
-import 'package:delivery_courier_app/core/widgets/custome_search_text_field.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_app_bar_widget.dart';
 import 'package:delivery_courier_app/core/widgets/background_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
+
+  @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
+
+class _HomeViewBodyState extends State<HomeViewBody> {
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +56,8 @@ class HomeViewBody extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 14),
-                          const CustomeSearchTextField(
-                            hintText: 'Enter your trackig number',
+                          SearchPackageByIdBlocListener(
+                            searchController: _searchController,
                           ),
 
                           const SizedBox(height: 50),

@@ -4,8 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomeSearchTextField extends StatelessWidget {
-  const CustomeSearchTextField({super.key, required this.hintText});
+  const CustomeSearchTextField({
+    super.key,
+    required this.hintText,
+    this.controller,
+    this.onSubmitted,
+  });
   final String hintText;
+  final TextEditingController? controller;
+  final void Function(String)? onSubmitted;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,6 +27,8 @@ class CustomeSearchTextField extends StatelessWidget {
         ],
       ),
       child: TextField(
+        controller: controller,
+        onSubmitted: onSubmitted,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           prefixIcon: SizedBox(
