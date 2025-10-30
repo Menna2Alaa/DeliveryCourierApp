@@ -1,4 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:delivery_courier_app/features/delivery/data/repos/delivery_repo_impl.dart';
+import 'package:delivery_courier_app/features/delivery/presentation/cubits/add_new_delivery_cubit/add_new_delivery_cubit.dart';
+import 'package:delivery_courier_app/features/delivery/presentation/views/widgets/delivery_view_body_bloc_consumer.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/widgets/custome_bottom_navigation_bar.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_view_body.dart';
 import 'package:delivery_courier_app/features/packages/data/repos/package_repo_impl.dart';
@@ -18,33 +21,7 @@ class MainLayout extends StatefulWidget {
 
 class _MainLayoutState extends State<MainLayout> {
   final packageRepo = PackageRepoImpl(firestore: FirebaseFirestore.instance);
-
-  late final List<Widget> screens;
-
-  @override
-  void initState() {
-    super.initState();
-    screens = [
-      MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (_) => GetPackagesCubit(packageRepo)..getAllPackages(),
-          ),
-          BlocProvider(create: (_) => GetPackageByIdCubit(packageRepo)),
-        ],
-        child: const SafeArea(child: HomeViewBody()),
-      ),
-
-      BlocProvider(
-        create: (_) => GetPackagesCubit(packageRepo)..getAllPackages(),
-        child: const SafeArea(child: PackageViewBody()),
-      ),
-
-      const Center(child: Text('Couriers Screen')),
-      const Center(child: Text('Delivery Screen')),
-      const Center(child: Text('Profile Screen')),
-    ];
-  }
+  final deliveryRepo = DeliveryRepoImpl(firestore: FirebaseFirestore.instance);
 
   int currentIndex = 0;
 
@@ -56,13 +33,31 @@ class _MainLayoutState extends State<MainLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: IndexedStack(index: currentIndex, children: screens),
-      ),
-      bottomNavigationBar: CustomeBottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: onTabChanged,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => GetPackagesCubit(packageRepo)..getAllPackages(),
+        ),
+        BlocProvider(create: (_) => GetPackageByIdCubit(packageRepo)),
+        BlocProvider(create: (_) => AddNewDeliveryCubit(deliveryRepo)),
+      ],
+      child: Scaffold(
+        body: SafeArea(
+          child: IndexedStack(
+            index: currentIndex,
+            children: const [
+              HomeViewBody(),
+              PackageViewBody(),
+              Center(child: Text('Courier Screen')),
+              DeliveryViewBodyBlocConsumer(),
+              Center(child: Text('Profile Screen')),
+            ],
+          ),
+        ),
+        bottomNavigationBar: CustomeBottomNavigationBar(
+          currentIndex: currentIndex,
+          onTap: onTabChanged,
+        ),
       ),
     );
   }

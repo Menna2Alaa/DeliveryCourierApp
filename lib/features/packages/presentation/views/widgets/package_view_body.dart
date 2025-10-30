@@ -30,7 +30,7 @@ class PackageViewBody extends StatelessWidget {
                   ),
                   const SizedBox(height: 45),
                   const CustomeSearchTextField(
-                    hintText: 'Serch about your trackig number',
+                    hintText: 'Serch about your packages..',
                   ),
                 ],
               ),

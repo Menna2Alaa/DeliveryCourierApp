@@ -34,6 +34,8 @@ class SearchPackageByIdBlocListener extends StatelessWidget {
         hintText: 'Enter your trackig number',
         controller: _searchController,
         onSubmitted: (value) {
+          FocusScope.of(context).unfocus();
+
           if (value.trim().isEmpty) return;
 
           context.read<GetPackageByIdCubit>().getPackageByTrackingId(value);

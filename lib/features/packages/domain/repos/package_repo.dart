@@ -8,4 +8,5 @@ abstract class PackageRepo {
   Future<Either<Failures, PackageEntity>> getPackageByTrackingId(
     String trackingId,
   );
+  //Future<Either<Failures, void>> addNewPackage(PackageEntity package);
 }
