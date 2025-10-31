@@ -1,12 +1,8 @@
 import 'package:delivery_courier_app/core/utilies/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
-class PackageDetailInfoField extends StatelessWidget {
-  const PackageDetailInfoField({
-    super.key,
-    required this.label,
-    required this.value,
-  });
+class DetailInfoField extends StatelessWidget {
+  const DetailInfoField({super.key, required this.label, required this.value});
 
   final String label;
   final String value;

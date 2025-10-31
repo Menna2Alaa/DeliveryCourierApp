@@ -1,5 +1,5 @@
 import 'package:delivery_courier_app/core/utilies/assets.dart';
-import 'package:delivery_courier_app/features/packages/presentation/views/widgets/package_card.dart';
+import 'package:delivery_courier_app/core/widgets/app_cards.dart';
 import 'package:flutter/material.dart';
 
 class HighRelatedCouriersListView extends StatelessWidget {
@@ -14,7 +14,8 @@ class HighRelatedCouriersListView extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 8),
-          child: PackageCard(
+          child: AppCards(
+            height: 84,
             text1: 'John Smith',
             text2: '01001563144',
             leftIcon: Image.asset(

@@ -2,7 +2,7 @@ import 'package:delivery_courier_app/core/utilies/assets.dart';
 import 'package:delivery_courier_app/features/packages/domain/entity/package_entity.dart';
 import 'package:delivery_courier_app/features/packages/presentation/cubits/get_packages_cubit/get_packages_cubit.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/package_details_view.dart';
-import 'package:delivery_courier_app/features/packages/presentation/views/widgets/package_card.dart';
+import 'package:delivery_courier_app/core/widgets/app_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -27,8 +27,9 @@ class PackagesListView extends StatelessWidget {
               final package = state.packages[index];
 
               return Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: PackageCard(
+                padding: const EdgeInsets.only(bottom: 8, left: 18, right: 18),
+                child: AppCards(
+                  height: 65,
                   onTap: () {
                     navigateToDetails(context, package);
                   },
@@ -40,23 +41,7 @@ class PackagesListView extends StatelessWidget {
             },
           );
         } else if (state is GetPackagesFailure) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(Icons.error_outline, size: 48, color: Colors.red),
-                const SizedBox(height: 16),
-                Text('Error: ${state.message}'),
-                const SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<GetPackagesCubit>().getAllPackages();
-                  },
-                  child: const Text('Retry'),
-                ),
-              ],
-            ),
-          );
+          return Center(child: Text(state.message));
         }
         return const SizedBox();
       },

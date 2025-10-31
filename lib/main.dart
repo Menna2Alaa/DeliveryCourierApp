@@ -3,6 +3,8 @@ import 'package:delivery_courier_app/core/routes/on_generated_routes.dart';
 import 'package:delivery_courier_app/core/services/custome_bloc_observer.dart';
 import 'package:delivery_courier_app/core/services/get_it_service.dart';
 import 'package:delivery_courier_app/core/services/shared_prefrences_singleton.dart';
+import 'package:delivery_courier_app/features/courier/data/repos/courier_repo_impl.dart';
+import 'package:delivery_courier_app/features/courier/presentation/cubits/add_courier_cubit/add_courier_cubit.dart';
 import 'package:delivery_courier_app/features/packages/data/repos/package_repo_impl.dart';
 import 'package:delivery_courier_app/features/packages/presentation/cubits/add_package_cubit/add_package_cubit.dart';
 import 'package:delivery_courier_app/features/splash/presentation/views/splash_view.dart';
@@ -17,6 +19,7 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await initializePackages();
+  await initializeCouriers();
   await Pref.init();
   setupGetIt();
   runApp(const DeliveryCourierApp());
@@ -27,6 +30,16 @@ Future<void> initializePackages() async {
     final packageRepo = PackageRepoImpl(firestore: FirebaseFirestore.instance);
     final packageCubit = PackageCubit(packageRepo);
     await packageCubit.addPackage();
+  } catch (e) {
+    // Do nothing — fail silently to avoid breaking app startup
+  }
+}
+
+Future<void> initializeCouriers() async {
+  try {
+    final courierRepo = CourierRepoImpl(firestore: FirebaseFirestore.instance);
+    final courierCubit = AddCourierCubit(courierRepo);
+    await courierCubit.addCourier();
   } catch (e) {
     // Do nothing — fail silently to avoid breaking app startup
   }

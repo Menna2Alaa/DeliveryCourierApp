@@ -3,10 +3,17 @@ import 'package:delivery_courier_app/core/utilies/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class ListTileTitle extends StatelessWidget {
-  const ListTileTitle({super.key, required this.text1, required this.text2});
+  const ListTileTitle({
+    super.key,
+    required this.text1,
+    required this.text2,
+    this.text3 = '',
+    this.text4 = '',
+  });
 
   final String text1;
   final String text2;
+  final String? text3, text4;
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +23,18 @@ class ListTileTitle extends StatelessWidget {
         Text(text1, style: AppTextStyles.medium12),
         Text(
           text2,
+          style: AppTextStyles.regular11.copyWith(
+            color: AppColors.secondaryColor,
+          ),
+        ),
+        Text(
+          text3!,
+          style: AppTextStyles.regular11.copyWith(
+            color: AppColors.secondaryColor,
+          ),
+        ),
+        Text(
+          text4!,
           style: AppTextStyles.regular11.copyWith(
             color: AppColors.secondaryColor,
           ),

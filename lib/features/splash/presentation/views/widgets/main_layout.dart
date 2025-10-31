@@ -1,4 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:delivery_courier_app/features/courier/data/repos/courier_repo_impl.dart';
+import 'package:delivery_courier_app/features/courier/domain/repos/courier_repo.dart';
+import 'package:delivery_courier_app/features/courier/presentation/cubits/get_all_couriers_cubit/get_all_couriers_cubit.dart';
+import 'package:delivery_courier_app/features/courier/presentation/views/widgets/courier_view_body.dart';
 import 'package:delivery_courier_app/features/delivery/data/repos/delivery_repo_impl.dart';
 import 'package:delivery_courier_app/features/delivery/presentation/cubits/add_new_delivery_cubit/add_new_delivery_cubit.dart';
 import 'package:delivery_courier_app/features/delivery/presentation/views/widgets/delivery_view_body_bloc_consumer.dart';
@@ -20,15 +24,22 @@ class MainLayout extends StatefulWidget {
 }
 
 class _MainLayoutState extends State<MainLayout> {
-  final packageRepo = PackageRepoImpl(firestore: FirebaseFirestore.instance);
-  final deliveryRepo = DeliveryRepoImpl(firestore: FirebaseFirestore.instance);
+  late final PackageRepoImpl packageRepo;
+  late final DeliveryRepoImpl deliveryRepo;
+  late final CourierRepo courierRepo;
 
   int currentIndex = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    packageRepo = PackageRepoImpl(firestore: FirebaseFirestore.instance);
+    deliveryRepo = DeliveryRepoImpl(firestore: FirebaseFirestore.instance);
+    courierRepo = CourierRepoImpl(firestore: FirebaseFirestore.instance);
+  }
+
   void onTabChanged(int index) {
-    setState(() {
-      currentIndex = index;
-    });
+    setState(() => currentIndex = index);
   }
 
   @override
@@ -40,6 +51,9 @@ class _MainLayoutState extends State<MainLayout> {
         ),
         BlocProvider(create: (_) => GetPackageByIdCubit(packageRepo)),
         BlocProvider(create: (_) => AddNewDeliveryCubit(deliveryRepo)),
+        BlocProvider(
+          create: (_) => GetAllCouriersCubit(courierRepo)..getAllCouriers(),
+        ),
       ],
       child: Scaffold(
         body: SafeArea(
@@ -47,8 +61,9 @@ class _MainLayoutState extends State<MainLayout> {
             index: currentIndex,
             children: const [
               HomeViewBody(),
+              // These 3 must access cubits through the same context
               PackageViewBody(),
-              Center(child: Text('Courier Screen')),
+              CourierViewBody(),
               DeliveryViewBodyBlocConsumer(),
               Center(child: Text('Profile Screen')),
             ],

@@ -5,7 +5,7 @@ import 'package:delivery_courier_app/features/home/presentation/views/widgets/hi
 import 'package:delivery_courier_app/features/home/presentation/views/widgets/search_package_by_id_bloc_listener.dart';
 import 'package:delivery_courier_app/features/packages/presentation/cubits/get_packages_cubit/get_packages_cubit.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/package_details_view.dart';
-import 'package:delivery_courier_app/features/packages/presentation/views/widgets/package_card.dart';
+import 'package:delivery_courier_app/core/widgets/app_cards.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_header_widget.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_app_bar_widget.dart';
 import 'package:delivery_courier_app/core/widgets/background_widget.dart';
@@ -73,7 +73,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                           if (shippedPackages.isNotEmpty)
                             Column(
                               children: shippedPackages.map((pkg) {
-                                return PackageCard(
+                                return AppCards(
+                                  height: 65,
                                   text1: pkg.pkgId,
                                   text2:
                                       '${pkg.deliveryStatus} . ${pkg.content}',
