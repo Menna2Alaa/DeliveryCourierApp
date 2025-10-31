@@ -3,6 +3,7 @@ import 'package:delivery_courier_app/core/widgets/custome_button.dart';
 import 'package:delivery_courier_app/features/account/presentation/widgets/account_card.dart';
 import 'package:delivery_courier_app/features/account/presentation/widgets/account_header.dart';
 import 'package:delivery_courier_app/features/account/presentation/widgets/delete_account_widget.dart';
+import 'package:delivery_courier_app/features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
 
 class AccountViewBody extends StatelessWidget {
@@ -14,7 +15,10 @@ class AccountViewBody extends StatelessWidget {
       children: [
         const AccountHeader(),
         const SizedBox(height: 20),
-        const AccountCard(
+        AccountCard(
+          onTap: () {
+            Navigator.pushNamed(context, ProfileView.routeName);
+          },
           text: 'Profile',
           icon: Icon(Icons.person, size: 30, color: AppColors.primaryColor),
         ),

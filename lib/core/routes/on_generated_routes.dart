@@ -8,6 +8,7 @@ import 'package:delivery_courier_app/features/onboarding/presentation/views/on_b
 import 'package:delivery_courier_app/features/packages/domain/entity/package_entity.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/package_details_view.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/package_view.dart';
+import 'package:delivery_courier_app/features/profile/presentation/views/profile_view.dart';
 import 'package:delivery_courier_app/features/splash/presentation/views/splash_view.dart';
 import 'package:delivery_courier_app/features/splash/presentation/views/widgets/main_layout.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         builder: (_) => CourierDetailsView(courier: courier),
       );
 
+    case ProfileView.routeName:
+      return MaterialPageRoute(builder: (_) => const ProfileView());
     case MainLayout.routeName:
       return MaterialPageRoute(builder: (_) => const MainLayout());
 
