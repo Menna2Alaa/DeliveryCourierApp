@@ -11,6 +11,7 @@ import 'package:delivery_courier_app/features/packages/presentation/views/packag
 import 'package:delivery_courier_app/features/profile/presentation/views/profile_view.dart';
 import 'package:delivery_courier_app/features/splash/presentation/views/splash_view.dart';
 import 'package:delivery_courier_app/features/splash/presentation/views/widgets/main_layout.dart';
+import 'package:delivery_courier_app/features/terms_conditions/presentation/views/terms_conditions_view.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -50,6 +51,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case ProfileView.routeName:
       return MaterialPageRoute(builder: (_) => const ProfileView());
+
+    case TermsAndConditionsView.routeName:
+      return MaterialPageRoute(builder: (_) => const TermsAndConditionsView());
+
     case MainLayout.routeName:
       return MaterialPageRoute(builder: (_) => const MainLayout());
 

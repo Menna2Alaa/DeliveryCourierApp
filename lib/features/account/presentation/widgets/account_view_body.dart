@@ -4,6 +4,7 @@ import 'package:delivery_courier_app/features/account/presentation/widgets/accou
 import 'package:delivery_courier_app/features/account/presentation/widgets/account_header.dart';
 import 'package:delivery_courier_app/features/account/presentation/widgets/delete_account_widget.dart';
 import 'package:delivery_courier_app/features/profile/presentation/views/profile_view.dart';
+import 'package:delivery_courier_app/features/terms_conditions/presentation/views/terms_conditions_view.dart';
 import 'package:flutter/material.dart';
 
 class AccountViewBody extends StatelessWidget {
@@ -30,7 +31,10 @@ class AccountViewBody extends StatelessWidget {
           text: 'Technical Support',
           icon: Icon(Icons.support, size: 30, color: AppColors.primaryColor),
         ),
-        const AccountCard(
+        AccountCard(
+          onTap: () {
+            Navigator.pushNamed(context, TermsAndConditionsView.routeName);
+          },
           text: 'Terms & Conditions',
           icon: Icon(
             Icons.privacy_tip,

@@ -14,7 +14,10 @@ class ProfileHeader extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 18),
           child: Row(
             children: [
-              SvgPicture.asset(Assets.assetsImagesLeftArrow),
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: SvgPicture.asset(Assets.assetsImagesLeftArrow),
+              ),
               const SizedBox(width: 140),
               const Text('Profile', style: AppTextStyles.semiBold20),
             ],
