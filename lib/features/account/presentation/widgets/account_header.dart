@@ -17,11 +17,11 @@ class AccountHeader extends StatelessWidget {
           Row(
             children: [
               SvgPicture.asset(Assets.assetsImagesLeftArrow),
-              SizedBox(width: 140),
-              Text('Account', style: AppTextStyles.semiBold20),
+              const SizedBox(width: 140),
+              const Text('Account', style: AppTextStyles.semiBold20),
             ],
           ),
-          SizedBox(height: 14),
+          const SizedBox(height: 14),
           Container(
             width: 64,
             height: 64,
@@ -30,10 +30,10 @@ class AccountHeader extends StatelessWidget {
               color: AppColors.secondaryColor,
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
 
           Text(getUser().name, style: AppTextStyles.semiBold20),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Text(
             getUser().email,
             style: AppTextStyles.medium16.copyWith(
