@@ -1,17 +1,15 @@
 import 'package:delivery_courier_app/core/utilies/app_text_styles.dart';
-import 'package:delivery_courier_app/core/utilies/assets.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/widgets/ads_banner_widget.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/widgets/high_related_couriers_list_view.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/widgets/search_package_by_id_bloc_listener.dart';
+import 'package:delivery_courier_app/features/home/presentation/views/widgets/shipped_packages.dart';
 import 'package:delivery_courier_app/features/packages/presentation/cubits/get_packages_cubit/get_packages_cubit.dart';
-import 'package:delivery_courier_app/features/packages/presentation/views/package_details_view.dart';
-import 'package:delivery_courier_app/core/widgets/app_cards.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_header_widget.dart';
 import 'package:delivery_courier_app/features/home/presentation/views/widgets/home_app_bar_widget.dart';
 import 'package:delivery_courier_app/core/widgets/background_widget.dart';
+import 'package:delivery_courier_app/features/courier/presentation/cubits/get_all_couriers_cubit/get_all_couriers_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -26,13 +24,14 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetPackagesCubit, GetPackageState>(
-      builder: (context, state) {
-        if (state is GetPackagesLoading) {
-          return const CircularProgressIndicator();
-        } else if (state is GetPackagesSuccess) {
-          final shippedPackages = state.packages
+      builder: (context, packageState) {
+        if (packageState is GetPackagesLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (packageState is GetPackagesSuccess) {
+          final shippedPackages = packageState.packages
               .where((pkg) => pkg.deliveryStatus.toLowerCase() == 'shipped')
               .toList();
+
           return CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
@@ -42,17 +41,15 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 18),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const HomeAppBarWidget(),
                           const SizedBox(height: 80),
 
-                          Align(
-                            alignment: AlignmentGeometry.topLeft,
-                            child: Text(
-                              "Let's Track your package",
-                              style: AppTextStyles.semiBold20.copyWith(
-                                color: Colors.white,
-                              ),
+                          Text(
+                            "Let's Track your package",
+                            style: AppTextStyles.semiBold20.copyWith(
+                              color: Colors.white,
                             ),
                           ),
                           const SizedBox(height: 14),
@@ -63,6 +60,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                           const SizedBox(height: 50),
                           const AdsBannerWidget(),
                           const SizedBox(height: 14),
+
                           HomeHeadersWidget(
                             text1: 'Current shipment',
                             text2: 'View all',
@@ -71,26 +69,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                           const SizedBox(height: 12),
 
                           if (shippedPackages.isNotEmpty)
-                            Column(
-                              children: shippedPackages.map((pkg) {
-                                return AppCards(
-                                  height: 65,
-                                  text1: pkg.pkgId,
-                                  text2:
-                                      '${pkg.deliveryStatus} . ${pkg.content}',
-                                  leftIcon: SvgPicture.asset(
-                                    Assets.assetsImagesPackageIcon,
-                                  ),
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      PackageDetailsView.routeName,
-                                      arguments: pkg,
-                                    );
-                                  },
-                                );
-                              }).toList(),
-                            )
+                            ShippedPackages(shippedPackages: shippedPackages)
                           else
                             const Text(
                               'No shipped packages yet.',
@@ -103,7 +82,40 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                             text2: 'View all',
                           ),
                           const SizedBox(height: 12),
-                          const HighRelatedCouriersListView(),
+
+                          BlocBuilder<GetAllCouriersCubit, GetAllCouriersState>(
+                            builder: (context, courierState) {
+                              if (courierState is GetAllCouriersLoading) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else if (courierState
+                                  is GetAllCouriersSuccess) {
+                                final featuredCouriers = courierState.couriers
+                                    .where(
+                                      (courier) => courier.isFeatured == true,
+                                    )
+                                    .toList();
+
+                                if (featuredCouriers.isEmpty) {
+                                  return const Text(
+                                    'No featured couriers available.',
+                                    style: TextStyle(color: Colors.grey),
+                                  );
+                                }
+
+                                return HighRelatedCouriersListView(
+                                  highRelatedCouriers: featuredCouriers,
+                                );
+                              } else if (courierState
+                                  is GetAllCouriersFailure) {
+                                return Center(
+                                  child: Text('Error: ${courierState.message}'),
+                                );
+                              }
+                              return const SizedBox.shrink();
+                            },
+                          ),
                         ],
                       ),
                     ),
@@ -112,8 +124,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               ),
             ],
           );
-        } else if (state is GetPackagesFailure) {
-          return Center(child: Text('Error: ${state.message}'));
+        } else if (packageState is GetPackagesFailure) {
+          return Center(child: Text('Error: ${packageState.message}'));
         }
         return const SizedBox.shrink();
       },
