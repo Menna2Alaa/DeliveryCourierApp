@@ -130,4 +130,34 @@ class AuthRepoImpl extends AuthRepo {
       await firebaseAuthService.deleteUSer();
     }
   }
+
+  @override
+  Future<Either<Failures, void>> deleteUserAccount() async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        return Left(ServerFailure('No logged-in user found.'));
+      }
+
+      // Delete from Firestore
+      await dataBaseService.deleteData(
+        path: BackendEndpoint.addUserData,
+        documentId: user.uid,
+      );
+
+      // Delete from FirebaseAuth
+      await firebaseAuthService.deleteUSer();
+
+      return const Right(null);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        return Left(
+          ServerFailure('Please re-login before deleting your account.'),
+        );
+      }
+      return Left(ServerFailure(e.message ?? 'Authentication error.'));
+    } catch (e) {
+      return Left(ServerFailure('Something went wrong, try again later.'));
+    }
+  }
 }

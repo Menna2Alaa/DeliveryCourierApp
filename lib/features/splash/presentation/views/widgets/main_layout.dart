@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:delivery_courier_app/features/account/presentation/widgets/account_view_body.dart';
+import 'package:delivery_courier_app/features/account/presentation/views/widgets/account_view_body.dart';
+import 'package:delivery_courier_app/features/auth/domain/repos/auth_repo.dart';
+import 'package:delivery_courier_app/features/auth/presentation/cubits/delete_account_cubit/delete_account_cubit.dart';
 import 'package:delivery_courier_app/features/courier/data/repos/courier_repo_impl.dart';
 import 'package:delivery_courier_app/features/courier/domain/repos/courier_repo.dart';
 import 'package:delivery_courier_app/features/courier/presentation/cubits/get_all_couriers_cubit/get_all_couriers_cubit.dart';
@@ -15,6 +17,7 @@ import 'package:delivery_courier_app/features/packages/presentation/cubits/get_p
 import 'package:delivery_courier_app/features/packages/presentation/views/widgets/package_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -54,6 +57,9 @@ class _MainLayoutState extends State<MainLayout> {
         BlocProvider(create: (_) => AddNewDeliveryCubit(deliveryRepo)),
         BlocProvider(
           create: (_) => GetAllCouriersCubit(courierRepo)..getAllCouriers(),
+        ),
+        BlocProvider(
+          create: (_) => DeleteAccountCubit(GetIt.I.get<AuthRepo>()),
         ),
       ],
       child: Scaffold(

@@ -1,8 +1,8 @@
 import 'package:delivery_courier_app/core/utilies/app_colors.dart';
 import 'package:delivery_courier_app/core/widgets/custome_button.dart';
-import 'package:delivery_courier_app/features/account/presentation/widgets/account_card.dart';
-import 'package:delivery_courier_app/features/account/presentation/widgets/account_header.dart';
-import 'package:delivery_courier_app/features/account/presentation/widgets/delete_account_widget.dart';
+import 'package:delivery_courier_app/features/account/presentation/views/widgets/account_card.dart';
+import 'package:delivery_courier_app/features/account/presentation/views/widgets/account_header.dart';
+import 'package:delivery_courier_app/features/account/presentation/views/widgets/delete_account_widget.dart';
 import 'package:delivery_courier_app/features/profile/presentation/views/profile_view.dart';
 import 'package:delivery_courier_app/features/terms_conditions/presentation/views/terms_conditions_view.dart';
 import 'package:flutter/material.dart';

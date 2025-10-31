@@ -1,5 +1,5 @@
+import 'package:delivery_courier_app/core/widgets/details_info_field.dart';
 import 'package:delivery_courier_app/features/courier/domain/entity/courier_entity.dart';
-import 'package:delivery_courier_app/features/packages/presentation/views/widgets/package_detail_info_Field.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/widgets/package_header.dart';
 import 'package:flutter/material.dart';
 
@@ -22,33 +22,24 @@ class CourierDetailsViewBody extends StatelessWidget {
               },
             ),
             const SizedBox(height: 25),
-            PackageDetailInfoField(
-              label: 'Courier Name',
-              value: courierEntity.name,
-            ),
-            PackageDetailInfoField(
-              label: 'Courier Phone',
-              value: courierEntity.phone,
-            ),
-            PackageDetailInfoField(
-              label: 'Content',
-              value: courierEntity.content,
-            ),
-            PackageDetailInfoField(label: 'size', value: courierEntity.size),
-            PackageDetailInfoField(
+            DetailInfoField(label: 'Courier Name', value: courierEntity.name),
+            DetailInfoField(label: 'Courier Phone', value: courierEntity.phone),
+            DetailInfoField(label: 'Content', value: courierEntity.content),
+            DetailInfoField(label: 'size', value: courierEntity.size),
+            DetailInfoField(
               label: 'Pickup Location',
               value: courierEntity.pickupLocation,
             ),
 
-            PackageDetailInfoField(
+            DetailInfoField(
               label: 'Dropoff Location',
               value: courierEntity.dropoffLocation,
             ),
-            PackageDetailInfoField(
+            DetailInfoField(
               label: 'estimated Time',
               value: courierEntity.estimatedTime,
             ),
-            PackageDetailInfoField(label: 'Price', value: courierEntity.price),
+            DetailInfoField(label: 'Price', value: courierEntity.price),
           ],
         ),
       ),
