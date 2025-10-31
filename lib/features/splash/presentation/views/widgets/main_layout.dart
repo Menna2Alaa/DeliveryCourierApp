@@ -3,7 +3,6 @@ import 'package:delivery_courier_app/features/account/presentation/views/widgets
 import 'package:delivery_courier_app/features/auth/domain/repos/auth_repo.dart';
 import 'package:delivery_courier_app/features/auth/presentation/cubits/delete_account_cubit/delete_account_cubit.dart';
 import 'package:delivery_courier_app/features/courier/data/repos/courier_repo_impl.dart';
-import 'package:delivery_courier_app/features/courier/domain/repos/courier_repo.dart';
 import 'package:delivery_courier_app/features/courier/presentation/cubits/get_all_couriers_cubit/get_all_couriers_cubit.dart';
 import 'package:delivery_courier_app/features/courier/presentation/views/widgets/courier_view_body.dart';
 import 'package:delivery_courier_app/features/delivery/data/repos/delivery_repo_impl.dart';
@@ -28,23 +27,19 @@ class MainLayout extends StatefulWidget {
 }
 
 class _MainLayoutState extends State<MainLayout> {
-  late final PackageRepoImpl packageRepo;
-  late final DeliveryRepoImpl deliveryRepo;
-  late final CourierRepo courierRepo;
+  late final packageRepo = PackageRepoImpl(
+    firestore: FirebaseFirestore.instance,
+  );
+  late final deliveryRepo = DeliveryRepoImpl(
+    firestore: FirebaseFirestore.instance,
+  );
+  late final courierRepo = CourierRepoImpl(
+    firestore: FirebaseFirestore.instance,
+  );
 
   int currentIndex = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    packageRepo = PackageRepoImpl(firestore: FirebaseFirestore.instance);
-    deliveryRepo = DeliveryRepoImpl(firestore: FirebaseFirestore.instance);
-    courierRepo = CourierRepoImpl(firestore: FirebaseFirestore.instance);
-  }
-
-  void onTabChanged(int index) {
-    setState(() => currentIndex = index);
-  }
+  void onTabChanged(int index) => setState(() => currentIndex = index);
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +61,7 @@ class _MainLayoutState extends State<MainLayout> {
         body: SafeArea(
           child: IndexedStack(
             index: currentIndex,
-            children: const [
+            children: [
               HomeViewBody(),
               PackageViewBody(),
               CourierViewBody(),

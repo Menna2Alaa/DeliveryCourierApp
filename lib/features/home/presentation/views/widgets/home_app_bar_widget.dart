@@ -1,5 +1,6 @@
 import 'package:delivery_courier_app/core/utilies/app_colors.dart';
 import 'package:delivery_courier_app/core/utilies/app_text_styles.dart';
+import 'package:delivery_courier_app/features/auth/data/services/get_user.dart';
 import 'package:flutter/material.dart';
 
 class HomeAppBarWidget extends StatelessWidget {
@@ -19,7 +20,7 @@ class HomeAppBarWidget extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                'Menna Alaa',
+                getUser().name,
                 style: AppTextStyles.medium16.copyWith(color: Colors.white),
               ),
             ],

@@ -21,7 +21,8 @@ class HighRelatedCouriersListView extends StatelessWidget {
           text1: featuredCouriers.name,
           text2:
               '${featuredCouriers.pickupLocation} . ${featuredCouriers.dropoffLocation}',
-          leftIcon: SvgPicture.asset(Assets.assetsImagesPackageIcon),
+          text3: featuredCouriers.phone,
+          leftIcon: Image.asset(Assets.assetsImagesCourier),
           onTap: () {
             Navigator.pushNamed(
               context,
