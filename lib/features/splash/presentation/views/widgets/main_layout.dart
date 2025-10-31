@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:delivery_courier_app/features/account/presentation/widgets/account_view_body.dart';
 import 'package:delivery_courier_app/features/courier/data/repos/courier_repo_impl.dart';
 import 'package:delivery_courier_app/features/courier/domain/repos/courier_repo.dart';
 import 'package:delivery_courier_app/features/courier/presentation/cubits/get_all_couriers_cubit/get_all_couriers_cubit.dart';
@@ -61,11 +62,10 @@ class _MainLayoutState extends State<MainLayout> {
             index: currentIndex,
             children: const [
               HomeViewBody(),
-              // These 3 must access cubits through the same context
               PackageViewBody(),
               CourierViewBody(),
               DeliveryViewBodyBlocConsumer(),
-              Center(child: Text('Profile Screen')),
+              AccountViewBody(),
             ],
           ),
         ),
