@@ -108,4 +108,19 @@ class FirebaseAuthService {
   Future deleteUSer() async {
     await FirebaseAuth.instance.currentUser!.delete();
   }
+
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        throw CustomeException(
+          message: 'No user found for that email or wrong password.',
+        );
+      }
+    } catch (e) {
+      throw CustomeException(message: 'Something went wrong, try again later');
+    }
+    return (null);
+  }
 }

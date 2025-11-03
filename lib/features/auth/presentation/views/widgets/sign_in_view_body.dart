@@ -4,6 +4,7 @@ import 'package:delivery_courier_app/core/utilies/assets.dart';
 import 'package:delivery_courier_app/core/widgets/custome_button.dart';
 import 'package:delivery_courier_app/core/widgets/custome_text_form_field.dart';
 import 'package:delivery_courier_app/features/auth/presentation/cubits/sign_in_cubit/sign_in_cubit.dart';
+import 'package:delivery_courier_app/features/auth/presentation/views/forgot_password_view.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/have_or_not_have_an_account_widget.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/widgets/password_field.dart';
@@ -33,7 +34,10 @@ class _SignInViewBodyState extends State<SignInViewBody> {
         autovalidateMode: autovalidateMode,
         child: Stack(
           children: [
-            Image.asset(Assets.assetsImagesTopScreenBackground),
+            Image.asset(
+              Assets.assetsImagesTopScreenBackground,
+              width: double.infinity,
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 136, left: 26, right: 26),
               child: Column(
@@ -69,10 +73,18 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
-                        'Forgot Password?',
-                        style: AppTextStyles.semiBold13.copyWith(
-                          color: AppColors.primaryColor,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            ForgotPasswordView.routeName,
+                          );
+                        },
+                        child: Text(
+                          'Forgot Password?',
+                          style: AppTextStyles.semiBold13.copyWith(
+                            color: AppColors.primaryColor,
+                          ),
                         ),
                       ),
                     ],

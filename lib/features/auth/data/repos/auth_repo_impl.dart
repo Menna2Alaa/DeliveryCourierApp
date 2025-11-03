@@ -160,4 +160,17 @@ class AuthRepoImpl extends AuthRepo {
       return Left(ServerFailure('Something went wrong, try again later.'));
     }
   }
+
+  @override
+  Future<Either<Failures, void>> resetPassword(String email) async {
+    try {
+      await firebaseAuthService.sendPasswordResetEmail(email);
+      return const Right(null);
+    } on CustomeException catch (e) {
+      return Left(ServerFailure(e.message));
+    } catch (e) {
+      log('Exception in AuthRepoImpl.resetPassword: ${e.toString()}');
+      return Left(ServerFailure('Something went wrong, try again later.'));
+    }
+  }
 }

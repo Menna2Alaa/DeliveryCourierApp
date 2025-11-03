@@ -1,3 +1,5 @@
+import 'package:delivery_courier_app/features/auth/presentation/views/check_email_view.dart';
+import 'package:delivery_courier_app/features/auth/presentation/views/forgot_password_view.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/sign_in_view.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:delivery_courier_app/features/courier/domain/entity/courier_entity.dart';
@@ -55,8 +57,14 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case TermsAndConditionsView.routeName:
       return MaterialPageRoute(builder: (_) => const TermsAndConditionsView());
 
+    case ForgotPasswordView.routeName:
+      return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
+
     case MainLayout.routeName:
       return MaterialPageRoute(builder: (_) => const MainLayout());
+
+    case CheckEmailView.routeName:
+      return MaterialPageRoute(builder: (_) => const CheckEmailView());
 
     default:
       return MaterialPageRoute(builder: (_) => const Scaffold());

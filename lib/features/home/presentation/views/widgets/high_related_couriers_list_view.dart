@@ -3,7 +3,6 @@ import 'package:delivery_courier_app/core/widgets/app_cards.dart';
 import 'package:delivery_courier_app/features/courier/domain/entity/courier_entity.dart';
 import 'package:delivery_courier_app/features/courier/presentation/views/courier_details_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class HighRelatedCouriersListView extends StatelessWidget {
   const HighRelatedCouriersListView({
