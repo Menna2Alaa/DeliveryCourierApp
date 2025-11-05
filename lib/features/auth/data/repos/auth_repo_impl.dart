@@ -173,4 +173,64 @@ class AuthRepoImpl extends AuthRepo {
       return Left(ServerFailure('Something went wrong, try again later.'));
     }
   }
+
+  @override
+  Future<Either<Failures, void>> updateUserData({
+    required String uId,
+    required String name,
+    required String email,
+  }) async {
+    try {
+      // 🔹 Update Firestore user data
+      await dataBaseService.updateData(
+        path: BackendEndpoint.addUserData,
+        documentId: uId,
+        data: {'name': name, 'email': email},
+      );
+
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null && user.email != email) {
+        await user.verifyBeforeUpdateEmail(email);
+      }
+
+      return const Right(null);
+    } on FirebaseAuthException catch (e) {
+      return Left(ServerFailure(e.message ?? 'Failed to update email.'));
+    } catch (e) {
+      return Left(ServerFailure('Something went wrong, try again later.'));
+    }
+  }
+
+  @override
+  Future<Either<Failures, void>> updateUserPassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        return Left(ServerFailure('No logged-in user found.'));
+      }
+
+      final cred = EmailAuthProvider.credential(
+        email: user.email!,
+        password: currentPassword,
+      );
+
+      await user.reauthenticateWithCredential(cred);
+      await user.updatePassword(newPassword);
+
+      return const Right(null);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'wrong-password') {
+        return Left(ServerFailure('Incorrect current password.'));
+      } else if (e.code == 'requires-recent-login') {
+        return Left(ServerFailure('Please re-login and try again.'));
+      } else {
+        return Left(ServerFailure(e.message ?? 'Password update failed.'));
+      }
+    } catch (e) {
+      return Left(ServerFailure('Something went wrong, try again later.'));
+    }
+  }
 }

@@ -9,18 +9,21 @@ class CustomeTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.onSaved,
     this.obsecureText = false,
+    this.controller,
   });
   final String hintText;
   final TextInputType textInputType;
   final Widget? suffixIcon;
   final void Function(String?)? onSaved;
   final bool obsecureText;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: TextFormField(
+        controller: controller,
         obscureText: obsecureText,
         onSaved: onSaved,
         validator: (value) {

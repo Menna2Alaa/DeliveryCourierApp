@@ -41,4 +41,13 @@ class FirestoreService implements DataBaseService {
   }) async {
     await firestore.collection(path).doc(documentId).delete();
   }
+
+  @override
+  Future<void> updateData({
+    required String path,
+    required String documentId,
+    required Map<String, dynamic> data,
+  }) async {
+    await firestore.collection(path).doc(documentId).update(data);
+  }
 }
