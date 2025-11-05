@@ -4,7 +4,7 @@ import 'package:delivery_courier_app/core/services/shared_prefrences_singleton.d
 import 'package:delivery_courier_app/core/utilies/assets.dart';
 import 'package:delivery_courier_app/features/auth/presentation/views/sign_in_view.dart';
 import 'package:delivery_courier_app/features/onboarding/presentation/views/on_boarding_view.dart';
-import 'package:delivery_courier_app/features/splash/presentation/views/widgets/main_layout.dart';
+import 'package:delivery_courier_app/main_layout.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
