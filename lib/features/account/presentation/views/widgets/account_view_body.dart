@@ -3,6 +3,7 @@ import 'package:delivery_courier_app/core/widgets/custome_button.dart';
 import 'package:delivery_courier_app/features/account/presentation/views/widgets/account_card.dart';
 import 'package:delivery_courier_app/features/account/presentation/views/widgets/account_header.dart';
 import 'package:delivery_courier_app/features/account/presentation/views/widgets/delete_account_widget.dart';
+import 'package:delivery_courier_app/features/payment_methods/presentation/views/payment_methods_view.dart';
 import 'package:delivery_courier_app/features/profile/presentation/views/profile_view.dart';
 import 'package:delivery_courier_app/features/terms_conditions/presentation/views/terms_conditions_view.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,10 @@ class AccountViewBody extends StatelessWidget {
           text: 'Profile',
           icon: Icon(Icons.person, size: 30, color: AppColors.primaryColor),
         ),
-        const AccountCard(
+        AccountCard(
+          onTap: () {
+            Navigator.pushNamed(context, PaymentMethodsView.routeName);
+          },
           text: 'Payment Methods',
           icon: Icon(Icons.payment, size: 30, color: AppColors.primaryColor),
         ),
