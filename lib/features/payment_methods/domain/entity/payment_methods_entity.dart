@@ -1,11 +1,13 @@
 class PaymentMethodsEntity {
-  final String id;
   final String brand;
   final String last4;
   final String cardHolderName;
+  final String? expiryDate;
+  final String? cvv;
 
   PaymentMethodsEntity({
-    required this.id,
+    this.expiryDate,
+    this.cvv,
     required this.brand,
     required this.last4,
     required this.cardHolderName,

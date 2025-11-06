@@ -2,7 +2,8 @@ import 'package:delivery_courier_app/features/payment_methods/domain/entity/paym
 
 class PaymentMethodsModel extends PaymentMethodsEntity {
   PaymentMethodsModel({
-    required super.id,
+    super.expiryDate,
+    super.cvv,
     required super.brand,
     required super.last4,
     required super.cardHolderName,
@@ -10,16 +11,18 @@ class PaymentMethodsModel extends PaymentMethodsEntity {
 
   factory PaymentMethodsModel.fromMap(Map<String, dynamic> map) =>
       PaymentMethodsModel(
-        id: map['id'],
-        brand: map['brand'],
-        last4: map['last4'],
-        cardHolderName: map['cardHolder'],
+        expiryDate: map['expiryDate'],
+        cvv: map['cvv'],
+        brand: map['brand'] ?? "",
+        last4: map['last4'] ?? "",
+        cardHolderName: map['cardHolderName'] ?? "",
       );
 
   Map<String, dynamic> toMap() => {
-    'id': id,
     'brand': brand,
     'last4': last4,
     'cardHolderName': cardHolderName,
+    'expiryDate': expiryDate,
+    'cvv': cvv,
   };
 }

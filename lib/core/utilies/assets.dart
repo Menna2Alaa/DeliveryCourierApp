@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   /// Assets for assetsImagesAppLogo
   /// assets/images/app_logo.svg
   static const String assetsImagesAppLogo = "assets/images/app_logo.svg";
@@ -36,7 +36,8 @@ class Assets {
 
   /// Assets for assetsImagesFacebookIcon
   /// assets/images/facebook_icon.png
-  static const String assetsImagesFacebookIcon = "assets/images/facebook_icon.png";
+  static const String assetsImagesFacebookIcon =
+      "assets/images/facebook_icon.png";
 
   /// Assets for assetsImagesGoogleIcon
   /// assets/images/google_icon.png
@@ -52,11 +53,13 @@ class Assets {
 
   /// Assets for assetsImagesOnboardingImage
   /// assets/images/onboarding_image.png
-  static const String assetsImagesOnboardingImage = "assets/images/onboarding_image.png";
+  static const String assetsImagesOnboardingImage =
+      "assets/images/onboarding_image.png";
 
   /// Assets for assetsImagesPackageIcon
   /// assets/images/package_icon.svg
-  static const String assetsImagesPackageIcon = "assets/images/package_icon.svg";
+  static const String assetsImagesPackageIcon =
+      "assets/images/package_icon.svg";
 
   /// Assets for assetsImagesPen
   /// assets/images/pen.svg
@@ -76,10 +79,13 @@ class Assets {
 
   /// Assets for assetsImagesTopScreenBackground
   /// assets/images/top_screen_background.png
-  static const String assetsImagesTopScreenBackground = "assets/images/top_screen_background.png";
+  static const String assetsImagesTopScreenBackground =
+      "assets/images/top_screen_background.png";
 
   /// Assets for assetsImagesUser
   /// assets/images/user.svg
   static const String assetsImagesUser = "assets/images/user.svg";
-}
 
+  static const String assetsImagesMastercard = "assets/images/masterCard.svg";
+  static const String assetsImagesVisa = "assets/images/visa.svg";
+}

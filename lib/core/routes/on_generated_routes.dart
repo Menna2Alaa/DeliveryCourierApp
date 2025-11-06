@@ -10,6 +10,7 @@ import 'package:delivery_courier_app/features/onboarding/presentation/views/on_b
 import 'package:delivery_courier_app/features/packages/domain/entity/package_entity.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/package_details_view.dart';
 import 'package:delivery_courier_app/features/packages/presentation/views/package_view.dart';
+import 'package:delivery_courier_app/features/payment_methods/presentation/views/add_new_card_view.dart';
 import 'package:delivery_courier_app/features/payment_methods/presentation/views/payment_methods_view.dart';
 import 'package:delivery_courier_app/features/profile/presentation/views/profile_view.dart';
 import 'package:delivery_courier_app/features/splash/presentation/views/splash_view.dart';
@@ -69,6 +70,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case PaymentMethodsView.routeName:
       return MaterialPageRoute(builder: (_) => const PaymentMethodsView());
+
+    case AddNewCardView.routeName:
+      return MaterialPageRoute(builder: (_) => const AddNewCardView());
 
     default:
       return MaterialPageRoute(builder: (_) => const Scaffold());
